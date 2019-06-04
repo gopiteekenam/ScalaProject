@@ -33,6 +33,7 @@ def main(args: Array[String]) {
 
   } catch {
     case e: Throwable => e.printStackTrace()
+    //case _ :Any => println("error with exception ")
   }
 }
 }
