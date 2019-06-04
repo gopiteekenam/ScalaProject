@@ -22,6 +22,7 @@ object ScalaJdbcConnectSelect {
       // make the connection
       Class.forName(driver)
       connection = DriverManager.getConnection(url, username, password)
+
       // create the statement, and run the select query
       val statement = connection.createStatement()
       statement.execute("insert into candidate (name, city,programing_language) values('sateesh v','renugunta','multi language')")
@@ -32,9 +33,14 @@ object ScalaJdbcConnectSelect {
       println(names)
 
 
+
     } catch {
-      case e: Throwable => e.printStackTrace()
+      case ex: NullPointerException => println("Connection is invalid")
+      case e: RuntimeException => e.printStackTrace()
+
+      case _ : Any => new Exception("new exception")
     }
+    if(connection != null)
     connection.close()
   }
 }
